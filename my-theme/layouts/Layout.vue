@@ -84,9 +84,9 @@ export default {
   },
 
   mounted() {
-    this.$router.afterEach(() => {
-      this.isSidebarOpen = false;
-    });
+    // this.$router.afterEach(() => {
+    //   this.isSidebarOpen = false;
+    // });
     var parallaxInstance = new parallax(this.$refs.parallax, {
       relativeInput: false,
     });
