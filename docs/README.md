@@ -1,3 +1,10 @@
+---
+title: vuepress配置项
+time: 2022-11-7 16:53:16  # 时间
+isHome: true # 是否是home页
+# sticky 是否置顶
+---
+
 ```
 ├── docs
 │   ├── .vuepress (可选的)
@@ -13,11 +20,11 @@
 │   │   │   └── ssr.html
 │   │   ├── config.js (可选的)
 │   │   └── enhanceApp.js (可选的)
-│   │ 
+│   │
 │   ├── README.md
 │   ├── guide
 │   │   └── README.md
 │   └── config.md
-│ 
+│
 └── package.json
 ```
