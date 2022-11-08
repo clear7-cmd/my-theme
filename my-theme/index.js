@@ -1,5 +1,7 @@
 const path = require('path')
-
+function resolve(dir) {
+  return path.join(__dirname, dir)
+}
 /**
  * @type {import('@vuepress/types').Theme<import('@vuepress/types').DefaultThemeConfig>}
  */
@@ -10,14 +12,14 @@ module.exports = (options, ctx) => {
   const isAlgoliaSearch = (
     themeConfig.algolia
     || Object
-        .keys(siteConfig.locales && themeConfig.locales || {})
-        .some(base => themeConfig.locales[base].algolia)
+      .keys(siteConfig.locales && themeConfig.locales || {})
+      .some(base => themeConfig.locales[base].algolia)
   )
 
   const enableSmoothScroll = themeConfig.smoothScroll === true
 
   return {
-    alias () {
+    alias() {
       return {
         '@AlgoliaSearchBox': isAlgoliaSearch
           ? path.resolve(__dirname, 'components/AlgoliaSearchBox.vue')
@@ -56,6 +58,37 @@ module.exports = (options, ctx) => {
         after: () => '</details>\n'
       }],
       ['smooth-scroll', enableSmoothScroll]
-    ]
+    ],
+    chainWebpack(config, isServer) {
+      // 一个🌰:对svg的优雅处理
+      // config.module
+      //   .rule("svgIcon")
+      //   .test(/\.svg$/)
+      //   .include.add(resolve("./icon"))
+      //   .end()
+      //   .use("svg-sprite-loader")
+      //   .loader("svg-sprite-loader")
+      //   .tap(options => {
+      //     options = {
+      //       symbolId: "icon-[name]"
+      //     };
+      //     return options;
+      //   });
+      config.module
+        .rule('svg')
+        .exclude.add(resolve('./icons'))
+        .end()
+      config.module
+        .rule('svg-sprite-loader')
+        .test(/\.svg$/)
+        .include.add(resolve('./icons'))
+        .end()
+        .use('svg-sprite-loader')
+        .loader('svg-sprite-loader')
+        .options({
+          symbolId: 'icon-[name]'
+        })
+        .end()
+    }
   }
 }

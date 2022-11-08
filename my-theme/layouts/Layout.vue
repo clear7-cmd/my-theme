@@ -2,16 +2,19 @@
   <div id="main_layout">
     <v-banner></v-banner>
     <home-list></home-list>
+    <themeMode></themeMode>
   </div>
 </template>
 <script>
 import vBanner from "@theme/components/banner";
 import homeList from "@theme/components/homeList";
+import themeMode from "@theme/components/themeMode";
 export default {
   name: "",
   components: {
     vBanner,
     homeList,
+    themeMode
   },
   data() {
     return {};
@@ -19,8 +22,7 @@ export default {
   computed: {},
   methods: {},
   created() {},
-  mounted() {
-  },
+  mounted() {},
 };
 </script>
 <style lang='scss' scoped>
