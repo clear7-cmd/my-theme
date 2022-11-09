@@ -40,9 +40,9 @@ export default ({
                         height: '1em',
                         'vertical-align': '-0.15em',
                         fill: 'currentColor',
-                        overflow: 'hidden'
+                        overflow: 'hidden',
                     },
-                    attrs: { 'aria-hidden': true }
+                    attrs: { 'aria-hidden': true, }
                 },
                 [
                     h('use', {

@@ -4,7 +4,7 @@ export default {
         $filterPosts() { // 过滤非文章页和首页的文章数据
             return filterPosts(this.$site.pages)
         },
-        $timeSort() {
+        $timeSort() { //时间排序
             return timeSort(this.$filterPosts)
         }
     },

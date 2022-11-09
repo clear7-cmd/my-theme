@@ -1,6 +1,6 @@
 <template>
   <div id="themeMode" @click="selectMode(currentMode)">
-    <svg-icon :symbol="modeOptions[currentMode]"></svg-icon>
+    <svg-icon :symbol="modeOptions[currentMode]" className="theme"></svg-icon>
   </div>
 </template>
 <script>
@@ -11,8 +11,8 @@ export default {
   data() {
     return {
       modeOptions: {
-        dark: "ai250",
-        light: "yueliang",
+        dark: "yueliang",
+        light: "ai250",
       },
       currentMode: "dark",
     };
@@ -35,7 +35,7 @@ export default {
   },
 };
 </script>
-<style lang='scss' scoped>
+<style lang='scss'>
 #themeMode {
   position: fixed;
   bottom: 30px;
@@ -44,15 +44,17 @@ export default {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: #ccc;
-  opacity: 0.6;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
   transition: all 0.3s;
+  background: rgba($color: rgb(112, 111, 111), $alpha: 0.6);
   &:hover {
-    opacity: 0.9;
+    background: rgba($color: rgb(112, 111, 111), $alpha: 0.9);
+  }
+  .svg-icon-theme {
+    color: var(--text-color);
   }
 }
 </style>
