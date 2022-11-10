@@ -9,6 +9,7 @@
             )
           "
           alt=""
+          :default-src="$withBase('/loading.gif')"
         />
       </div>
       <!-- {{ item.title }} -->
@@ -25,8 +26,7 @@ export default {
   computed: {},
   methods: {},
   created() {},
-  mounted() {
-  },
+  mounted() {},
 };
 </script>
 <style lang='scss' scoped>
@@ -40,14 +40,27 @@ export default {
     // box-shadow: 0 3px 8px 3px rgba(0, 0, 0, 0.15);
     box-shadow: var(--box-shadow);
     transition: all 0.3s;
-    margin: 10px;
+    margin: 10px 10px 30px 10px;
     height: 250px;
     transition: all 0.3s;
     overflow: hidden;
+    display: flex;
     &:hover {
       box-shadow: var(--box-shadow-hover);
+      img {
+        transform: scale(1.1);
+      }
     }
     .img_box {
+      width: 350px;
+      height: 100%;
+      overflow: hidden;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: all .3s;
+      }
     }
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <div :class="['banner', popUpShow ? 'banner_dynamic' : '']">
+  <div ref="banner" :class="['banner', popUpShow ? 'banner_dynamic' : '']">
     <transition name="list">
       <nav-bar :clickList="clickList" v-show="!popUpShow"></nav-bar>
     </transition>
@@ -65,6 +65,12 @@ export default {
     var parallaxInstance = new parallax(this.$refs.parallax, {
       relativeInput: false,
     });
+    //io 为 IntersectionObserver对象 - 由IntersectionObserver()构造器创建
+    const io = new IntersectionObserver((entries) => {
+      //entries 为 IntersectionObserverEntry对像数组
+      console.log(entries[0].isIntersecting);
+    }); //不传options参数
+    io.observe(this.$refs.banner);
   },
   methods: {
     clickList() {

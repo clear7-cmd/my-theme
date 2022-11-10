@@ -1,8 +1,9 @@
 <template>
-  <div id="main_layout">
-    <v-banner ></v-banner>
+  <div id="main_layout" class="main_layout_sup">
+    <v-banner></v-banner>
     <home-list></home-list>
     <themeMode></themeMode>
+    <div class="bottom"></div>
   </div>
 </template>
 <script>
@@ -25,6 +26,11 @@ export default {
   methods: {},
   created() {},
   mounted() {
+    setTimeout(() => {
+      document
+        .getElementById("main_layout")
+        .classList.remove("main_layout_sup");
+    }, 800);
   },
 };
 </script>
@@ -33,12 +39,10 @@ export default {
   height: 100vh;
   overflow-y: scroll;
   // proximity:接近的时候滚动 mandatory:滚动结束后，滚动停止点一定会强制停在我们指定的地方
-  scroll-snap-type: y mandatory;
+  scroll-snap-type: block mandatory;
   scroll-behavior: smooth;
   background: var(--background-color);
-  .box {
-    width: 100%;
-    height: 200vh;
+  .bottom {
     scroll-snap-align: start;
   }
 }
@@ -52,5 +56,5 @@ svg {
 path {
   fill: unset;
 }
-
+// .title_before
 </style>

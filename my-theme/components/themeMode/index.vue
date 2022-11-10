@@ -31,7 +31,6 @@ export default {
   created() {},
   mounted() {
     applyMode("dark");
-    console.log(window.matchMedia("(prefers-color-scheme: dark)"));
   },
 };
 </script>
@@ -51,7 +50,7 @@ export default {
   transition: all 0.3s;
   background: rgba($color: rgb(112, 111, 111), $alpha: 0.6);
   &:hover {
-    background: rgba($color: rgb(112, 111, 111), $alpha: 0.9);
+    background: rgba($color: rgb(111, 111, 112), $alpha: 0.9);
   }
   .svg-icon-theme {
     color: var(--text-color);
