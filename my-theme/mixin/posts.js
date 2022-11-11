@@ -6,7 +6,8 @@ export default {
         },
         $timeSort() { //时间排序
             return timeSort(this.$filterPosts)
-        }
+        },
+
     },
     methods: {
         // 日期格式化(只获取年月日)

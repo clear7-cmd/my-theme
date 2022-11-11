@@ -31,7 +31,7 @@ export default {
   height: 100px;
   width: calc(100% - 100px);
   z-index: 999;
-  color: #ccc;
+  color: #fff;
   font-size: 30px;
   .nav_icon {
     cursor: pointer;

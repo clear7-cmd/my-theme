@@ -6,7 +6,7 @@
     <transition name="pop">
       <pop-up v-show="popUpShow" :clickList="clickList"></pop-up>
     </transition>
-    <div ref="parallax" id="parallax">
+    <div ref="parallax" v-show="currentMode == 'dark'" id="parallax">
       <div id="my_parallax_demo" class="layer" data-depth=".5">
         <img src="../../assets/welcome-cover.jpg" alt="" />
       </div>
@@ -23,12 +23,37 @@
           style="fill: rgb(46, 118, 165)"
         />
       </svg>
+      <div class="banner_title">
+        {{ dateFormat($page.frontmatter.time, "\/") || "" }}
+        <h1>
+          {{ $page.frontmatter.title || "" }}
+        </h1>
+      </div>
     </div>
-    <div class="banner_title">
-      {{ dateFormat($page.frontmatter.time, "\/") || "" }}
-      <h1>
-        {{ $page.frontmatter.title || "" }}
-      </h1>
+    <div id="videoPlay" v-show="currentMode == 'light'">
+      <video
+        :src="$withBase('./ocean/ocean.mp4')"
+        :poster="$withBase('./ocean/ocean.png')"
+        autoplay
+        loop
+        muted
+      ></video>
+      <div class="video_overlay"></div>
+      <div class="light_mode_title">
+        <div class="title">vuepress</div>
+        <vue-typed-js
+          :strings="['awesome', 'brilliant']"
+          :typeSpeed="200"
+          :backSpeed="50"
+          :backDelay="1000"
+          :loop="true"
+        >
+          <div class="subTitle"><span class="typing"></span></div>
+        </vue-typed-js>
+      </div>
+    </div>
+    <div class="down" @click="scrollView">
+      <svg-icon symbol="down"></svg-icon>
     </div>
   </div>
 </template>
@@ -46,6 +71,7 @@ export default {
   data() {
     return {
       popUpShow: false,
+      currentMode: "dark",
     };
   },
   watch: {
@@ -65,17 +91,19 @@ export default {
     var parallaxInstance = new parallax(this.$refs.parallax, {
       relativeInput: false,
     });
-    //io 为 IntersectionObserver对象 - 由IntersectionObserver()构造器创建
-    const io = new IntersectionObserver((entries) => {
-      //entries 为 IntersectionObserverEntry对像数组
-      console.log(entries[0].isIntersecting);
-    }); //不传options参数
-    io.observe(this.$refs.banner);
+    this.$eventBus.$on("selectMode", (mode) => {
+      this.currentMode = mode;
+    });
+    console.log(document.getElementById("main_layout"));
   },
   methods: {
     clickList() {
       console.log(this.popUpShow);
       this.popUpShow = !this.popUpShow;
+    },
+    scrollView() {
+      console.log(11111);
+      document.getElementById("main_layout").scrollTop = this.$refs.banner.offsetHeight
     },
   },
 };
@@ -95,6 +123,49 @@ export default {
     overflow: hidden;
     height: 100vh;
     width: 100vw;
+    .banner_title {
+      position: absolute !important;
+      top: 50% !important;
+      left: 10% !important;
+      color: #ccc;
+      margin-top: -50px;
+    }
+  }
+  #videoPlay {
+    position: relative;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+    video {
+      width: 100%;
+      height: 100%;
+      transform: scale(1.3);
+    }
+    .video_overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background-color: rgba(178, 191, 204, 0.4);
+    }
+    .light_mode_title {
+      color: #fff;
+      position: absolute;
+      width: 100%;
+      height: 200px;
+      top: calc(50% - 100px);
+      text-align: center;
+      .title {
+        font-size: 2.85em;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+      .subTitle {
+        font-size: 1.85em;
+        margin: 0 auto;
+      }
+    }
   }
   #my_parallax_demo {
     position: absolute;
@@ -112,12 +183,16 @@ export default {
       transform: scale(1.1);
     }
   }
-  .banner_title {
+  .down {
     position: absolute;
-    top: 50%;
-    left: 10%;
-    color: #ccc;
-    margin-top: -50px;
+    width: 100%;
+    text-align: center;
+    bottom: 5%;
+    color: #fff;
+    font-size: 30px;
+    cursor: pointer;
+    animation: is_down 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) alternate
+      infinite;
   }
 }
 .banner_dynamic {
@@ -143,6 +218,19 @@ export default {
   opacity: 1;
   transition: 0.3s ease-in-out;
   transition-delay: 0.1s;
+}
+@keyframes is_down {
+  0% {
+    transform: translateY(0);
+    color: #fff;
+  }
+  50% {
+    color: rgba($color: #fff, $alpha: 0.8);
+  }
+  100% {
+    transform: translateY(20px);
+    color: rgba($color: #fff, $alpha: 0.5);
+  }
 }
 @-webkit-keyframes slide-out-top {
   0% {

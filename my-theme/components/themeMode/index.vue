@@ -22,10 +22,8 @@ export default {
     selectMode(mode) {
       this.currentMode = mode == "light" ? "dark" : "light";
       applyMode(this.currentMode);
+      this.$eventBus.$emit("selectMode", this.currentMode);
       return;
-      if (mode !== this.currentMode) {
-        // localStorage.setItem("mode", mode);
-      }
     },
   },
   created() {},
@@ -48,6 +46,7 @@ export default {
   align-items: center;
   cursor: pointer;
   transition: all 0.3s;
+  z-index: 999;
   background: rgba($color: rgb(112, 111, 111), $alpha: 0.6);
   &:hover {
     background: rgba($color: rgb(111, 111, 112), $alpha: 0.9);

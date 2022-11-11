@@ -3,7 +3,7 @@
     <div v-for="item in $timeSort" class="page_item" :key="item.key">
       <div class="img_box">
         <img
-          :src="
+          v-lazy="
             $withBase(
               item.frontmatter.titleImg ? item.frontmatter.titleImg : '/404.jpg'
             )

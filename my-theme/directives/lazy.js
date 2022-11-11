@@ -1,7 +1,6 @@
 let imgsInf = []; //存储尚未加载的图片信息
 //调用该函数 用于加载单张图片
 function loadingImg(imgDOM) {
-    console.log(imgDOM);
     //获得该img元素的src信息
     let imgSrc = imgsInf.filter((imgInf) => imgInf.dom === imgDOM)[0].src;
     const tempImg = new Image(); //新建Image对象实例
@@ -9,7 +8,9 @@ function loadingImg(imgDOM) {
     //改写onload事件
     tempImg.onload = function () {
         // 当图片加载完成之后 替换img元素的src属性
-        imgDOM.src = imgSrc;
+        setTimeout(() => {
+            imgDOM.src = imgSrc;
+        }, 3000)
     };
 
     tempImg.src = imgSrc; //Image实例代替加载
