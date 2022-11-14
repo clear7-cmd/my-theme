@@ -3,6 +3,7 @@
     <div v-for="item in $timeSort" class="page_item" :key="item.key">
       <div class="img_box">
         <img
+          v-if="dynamicLazy"
           v-lazy="
             $withBase(
               item.frontmatter.titleImg ? item.frontmatter.titleImg : '/404.jpg'
@@ -59,7 +60,7 @@ export default {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        transition: all .3s;
+        transition: all 0.3s;
       }
     }
   }

@@ -1,7 +1,6 @@
 import posts from "@theme/mixin/posts.js"
 import VueRouter from 'vue-router'
-import vLazy from '@theme/directives/lazy'
-import VueTypedJs from 'vue-typed-js'
+// import vLazy from '@theme/directives/lazy'
 
 export default ({
     Vue, // VuePress 正在使用的 Vue 构造函数
@@ -11,9 +10,8 @@ export default ({
     isServer // 当前应用配置是处于 服务端渲染 或 客户端
 }) => {
     Vue.mixin(posts)
-    Vue.directive("lazy", vLazy)
+    // Vue.directive("lazy", vLazy)
     Vue.prototype.$eventBus = new Vue()
-    Vue.use(VueTypedJs)
     const icons = require.context('./icons', false, /\.svg$/)
     const importAll = r => {
         console.log(r.keys().map(r));

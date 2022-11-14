@@ -1,4 +1,5 @@
 import { filterPosts, timeSort } from '../util/filterData.js'
+import Vue from "vue"
 export default {
     computed: {
         $filterPosts() { // 过滤非文章页和首页的文章数据
@@ -20,6 +21,27 @@ export default {
         // 小于10补0
         zero(d) {
             return d.toString().padStart(2, '0')
+        }
+    },
+    mounted() {
+        import('vue-typed-js').then(module => {
+            Vue.use(module.default);
+            this.dynamicComponent = module.default
+        }).catch(err => {
+            console.log(err);
+        });
+        import('@theme/directives/lazy').then(module => {
+            Vue.directive("lazy", module.default)
+            this.dynamicLazy = true
+        }).catch(err => {
+            console.log(err);
+        });
+        
+    },
+    data() {
+        return {
+            dynamicComponent: null,
+            dynamicLazy:null
         }
     }
 }

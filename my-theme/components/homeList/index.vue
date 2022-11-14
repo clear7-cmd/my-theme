@@ -10,7 +10,7 @@
 <script>
 import vPageList from "./pageList";
 import vSidebar from "./Sidebar";
-import particles from "particles.js";
+// import particles from "particles.js";
 import particlesJson from "./particles.json";
 export default {
   name: "",
@@ -24,12 +24,19 @@ export default {
   computed: {},
   methods: {},
   mounted() {
-    particlesJS("home_back", particlesJson, function () {
-      console.log("callback - particles.js config loaded");
-    });
-    // particlesJS.load('home_list',particlesJson,()=>{
-    //   console.log(1111111);
-    // })
+    import("particles")
+      .then((module) => {
+        // Vue.use(module.default);
+        module.default("home_back", particlesJson, function () {
+          console.log("callback - particles.js config loaded");
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    // particlesJS("home_back", particlesJson, function () {
+    //   console.log("callback - particles.js config loaded");
+    // });
   },
 };
 </script>

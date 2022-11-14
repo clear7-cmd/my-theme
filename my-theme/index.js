@@ -60,20 +60,6 @@ module.exports = (options, ctx) => {
       ['smooth-scroll', enableSmoothScroll]
     ],
     chainWebpack(config, isServer) {
-      // 一个🌰:对svg的优雅处理
-      // config.module
-      //   .rule("svgIcon")
-      //   .test(/\.svg$/)
-      //   .include.add(resolve("./icon"))
-      //   .end()
-      //   .use("svg-sprite-loader")
-      //   .loader("svg-sprite-loader")
-      //   .tap(options => {
-      //     options = {
-      //       symbolId: "icon-[name]"
-      //     };
-      //     return options;
-      //   });
       config.module
         .rule('svg')
         .exclude.add(resolve('./icons'))

@@ -41,15 +41,28 @@
       <div class="video_overlay"></div>
       <div class="light_mode_title">
         <div class="title">vuepress</div>
-        <vue-typed-js
+        <ClientOnly v-if="dynamicComponent">
+          <vue-typed-js
+            :strings="['awesome', 'brilliant']"
+            :typeSpeed="200"
+            :backSpeed="50"
+            :backDelay="1000"
+            :loop="true"
+          >
+            <div class="subTitle"><span class="typing"></span></div>
+          </vue-typed-js>
+        </ClientOnly>
+        <!-- <component
+          v-if="dynamicComponent"
+          :is="dynamicComponent"
           :strings="['awesome', 'brilliant']"
           :typeSpeed="200"
           :backSpeed="50"
           :backDelay="1000"
           :loop="true"
         >
-          <div class="subTitle"><span class="typing"></span></div>
-        </vue-typed-js>
+          <div class="subTitle"><span class="typing"></span></div
+        ></component> -->
       </div>
     </div>
     <div class="down" @click="scrollView">
@@ -103,7 +116,8 @@ export default {
     },
     scrollView() {
       console.log(11111);
-      document.getElementById("main_layout").scrollTop = this.$refs.banner.offsetHeight
+      document.getElementById("main_layout").scrollTop =
+        this.$refs.banner.offsetHeight;
     },
   },
 };

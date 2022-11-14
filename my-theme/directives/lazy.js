@@ -18,7 +18,8 @@ function loadingImg(imgDOM) {
 }
 
 //io 为 IntersectionObserver对象 - 由IntersectionObserver()构造器创建
-const io = new IntersectionObserver((entries) => {
+
+const io = IntersectionObserver ? new IntersectionObserver((entries) => {
     //entries 为 IntersectionObserverEntry对像数组
     entries.forEach((item) => {
         //item为 IntersectionObserverEntry 对象
@@ -26,10 +27,10 @@ const io = new IntersectionObserver((entries) => {
         if (item.isIntersecting) {
             //img元素可见时
             loadingImg(item.target); //加载该img元素
-            io.unobserve(item.target); //图片加载完后即停止监听该元素
+            io?.unobserve(item.target); //图片加载完后即停止监听该元素
         }
     });
-}); //不传options参数
+}) : ''; //不传options参数
 //默认根元素(root属性)为浏览器视口、
 //默认阈值(threshold属性)为 0，表示目标元素刚进入根元素可见范围时触发回调函数
 export default {
@@ -37,7 +38,7 @@ export default {
         let defaultImg = el.getAttribute('default-src') ? el.getAttribute('default-src') : ''
         el.src = defaultImg
         //刚插入父节点时
-        io.observe(el); //开始监听该img元素
+        io?.observe(el); //开始监听该img元素
         const imgInf = {
             dom: el, //img 元素DOM节点
             src: bindings.value, //img的真正src信息
@@ -46,7 +47,7 @@ export default {
     },
     unbind(el) {
         //某个img元素解绑时 清除该img元素的信息 并停止监听该img元素
-        io.unobserve(el); //停止监听
+        io?.unobserve(el); //停止监听
         el.removeAttribute("default-src")
         imgsInf = imgsInf.filter((imgInf) => imgInf.dom !== el); //清除存储信息
     },

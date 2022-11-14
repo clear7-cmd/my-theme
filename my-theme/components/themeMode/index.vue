@@ -4,7 +4,7 @@
   </div>
 </template>
 <script>
-import applyMode from "./applyMode";
+// import applyMode from "./applyMode";
 export default {
   name: "",
   components: {},
@@ -15,20 +15,29 @@ export default {
         light: "ai250",
       },
       currentMode: "dark",
+      applyMode: null,
     };
   },
   computed: {},
   methods: {
     selectMode(mode) {
       this.currentMode = mode == "light" ? "dark" : "light";
-      applyMode(this.currentMode);
+      this.applyMode(this.currentMode);
       this.$eventBus.$emit("selectMode", this.currentMode);
       return;
     },
   },
   created() {},
   mounted() {
-    applyMode("dark");
+    import("./applyMode")
+      .then((module) => {
+        console.log(module.default);
+        this.applyMode = module.default;
+        this.applyMode("dark");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   },
 };
 </script>

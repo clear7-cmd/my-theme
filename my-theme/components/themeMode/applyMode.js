@@ -24,8 +24,8 @@ export default function applyMode (mode) {
     return
   }
 
-  const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
-  const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  const isDarkMode = window?.matchMedia('(prefers-color-scheme: dark)').matches
+  const isLightMode = window?.matchMedia('(prefers-color-scheme: light)').matches
 
   if (isDarkMode) render('dark')
   if (isLightMode) render('light')
