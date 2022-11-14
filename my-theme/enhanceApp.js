@@ -10,7 +10,7 @@ export default ({
     Vue.mixin(posts)
     router = new VueRouter({
         ...router.options,
-        base: process.env.NODE_ENV === 'development' ? '/' : /my-theme/,
+        base: process.env.NODE_ENV === 'development' ? '/' : '/my-theme/',
     })
     Vue.prototype.$eventBus = new Vue()
     const icons = require.context('./icons', false, /\.svg$/)
