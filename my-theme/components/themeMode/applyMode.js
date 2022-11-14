@@ -10,6 +10,7 @@ function render (mode) {
   }
 
   rootElement.classList.remove(opposite)
+  localStorage.setItem("mode",mode)
   rootElement.classList.add(mode)
 }
 

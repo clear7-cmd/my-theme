@@ -22,12 +22,11 @@ export default {
 #sidebar {
   width: 270px;
   .div_box {
-    background: var(--background-color);
+    background: var(--box-color);
     border-radius: 10px;
-    // box-shadow: 0 3px 5px 3px rgba(0, 0, 0, 0.15);
     box-shadow: var(--box-shadow);
     transition: all 0.3s;
-    margin: 10px;
+    margin: 10px 10px 20px 10px;
     &:hover {
       box-shadow: var(--box-shadow-hover);
     }

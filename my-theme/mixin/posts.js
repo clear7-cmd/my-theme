@@ -1,4 +1,4 @@
-import { filterPosts, timeSort } from '../util/filterData.js'
+import { filterPosts, timeSort,catalogueSort } from '../util/filterData.js'
 import Vue from "vue"
 export default {
     computed: {
@@ -8,7 +8,9 @@ export default {
         $timeSort() { //时间排序
             return timeSort(this.$filterPosts)
         },
-
+        $catalogueSort() { //目录分类
+            return catalogueSort(this.$timeSort)
+        },
     },
     methods: {
         // 日期格式化(只获取年月日)
@@ -36,12 +38,12 @@ export default {
         }).catch(err => {
             console.log(err);
         });
-        
+
     },
     data() {
         return {
             dynamicComponent: null,
-            dynamicLazy:null
+            dynamicLazy: null
         }
     }
 }

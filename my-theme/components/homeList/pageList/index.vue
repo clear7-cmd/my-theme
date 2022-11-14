@@ -13,6 +13,23 @@
           :default-src="$withBase('/loading.gif')"
         />
       </div>
+      <div class="page_context">
+        <div class="page_title">
+          {{ item.title }}
+        </div>
+        <div class="page_time">
+          <span v-if="item.frontmatter.sticky" class="sticky">
+            <svg-icon symbol="sticky"></svg-icon>置顶 | </span
+          >
+          <span v-if="item.frontmatter.time"
+            >{{ dateFormat(item.frontmatter.time)
+            }}{{ item.frontmatter.demo ? " | " : "" }}
+          </span>
+          <span v-if="item.frontmatter.demo">demo </span>
+        </div>
+        <div class="page_subTile" v-html="item.excerpt"></div>
+      </div>
+
       <!-- {{ item.title }} -->
     </div>
   </div>
@@ -27,18 +44,19 @@ export default {
   computed: {},
   methods: {},
   created() {},
-  mounted() {},
+  mounted() {
+    console.log(this.$timeSort);
+  },
 };
 </script>
-<style lang='scss' scoped>
+<style lang='scss' >
 #pageList {
   flex: 1;
   padding: 0 10px;
   margin-left: 10px;
   .page_item {
-    background: var(--background-color);
+    background: var(--box-color);
     border-radius: 15px;
-    // box-shadow: 0 3px 8px 3px rgba(0, 0, 0, 0.15);
     box-shadow: var(--box-shadow);
     transition: all 0.3s;
     margin: 10px 10px 30px 10px;
@@ -62,6 +80,42 @@ export default {
         object-fit: cover;
         transition: all 0.3s;
       }
+    }
+    .page_context {
+      padding: 20px 30px;
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row;
+      align-content: center;
+      flex: 1;
+      .page_title {
+        font-size: 28px;
+        color: var(--text-color);
+        width: 100%;
+        cursor: pointer;
+        transition: all .3s;
+        &:hover{
+          color: #49b1f5;
+        }
+      }
+      .page_time {
+        font-size: 14px;
+        font-weight: 600;
+        margin: 10px 0;
+        color: var(--text-color-sub);
+        .sticky {
+          color: #ff7242;
+        }
+      }
+      .page_subTile {
+        width: 100%;
+      }
+    }
+    p {
+      margin: 0 !important;
+      padding: 0 !important;
+      font-size: 14px;
+      color: var(--text-color-sub);
     }
   }
 }

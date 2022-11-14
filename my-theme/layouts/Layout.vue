@@ -31,10 +31,12 @@ export default {
         .getElementById("main_layout")
         .classList.remove("main_layout_sup");
     }, 800);
+    console.log(this.$catalogueSort);
   },
 };
 </script>
 <style lang='scss' >
+@import url('../styles/animation.scss');
 #main_layout {
   height: 100vh;
   overflow-y: scroll;

@@ -52,17 +52,6 @@
             <div class="subTitle"><span class="typing"></span></div>
           </vue-typed-js>
         </ClientOnly>
-        <!-- <component
-          v-if="dynamicComponent"
-          :is="dynamicComponent"
-          :strings="['awesome', 'brilliant']"
-          :typeSpeed="200"
-          :backSpeed="50"
-          :backDelay="1000"
-          :loop="true"
-        >
-          <div class="subTitle"><span class="typing"></span></div
-        ></component> -->
       </div>
     </div>
     <div class="down" @click="scrollView">
@@ -104,6 +93,7 @@ export default {
     var parallaxInstance = new parallax(this.$refs.parallax, {
       relativeInput: false,
     });
+    this.currentMode = localStorage.getItem("mode")
     this.$eventBus.$on("selectMode", (mode) => {
       this.currentMode = mode;
     });
@@ -115,7 +105,6 @@ export default {
       this.popUpShow = !this.popUpShow;
     },
     scrollView() {
-      console.log(11111);
       document.getElementById("main_layout").scrollTop =
         this.$refs.banner.offsetHeight;
     },
@@ -233,106 +222,5 @@ export default {
   transition: 0.3s ease-in-out;
   transition-delay: 0.1s;
 }
-@keyframes is_down {
-  0% {
-    transform: translateY(0);
-    color: #fff;
-  }
-  50% {
-    color: rgba($color: #fff, $alpha: 0.8);
-  }
-  100% {
-    transform: translateY(20px);
-    color: rgba($color: #fff, $alpha: 0.5);
-  }
-}
-@-webkit-keyframes slide-out-top {
-  0% {
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-    opacity: 1;
-  }
-  100% {
-    -webkit-transform: translateY(-1000px);
-    transform: translateY(-1000px);
-    opacity: 0;
-  }
-}
-@keyframes slide-out-top {
-  0% {
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-    opacity: 1;
-  }
-  100% {
-    -webkit-transform: translateY(-1000px);
-    transform: translateY(-1000px);
-    opacity: 0;
-  }
-}
-@-webkit-keyframes slide-in-top {
-  0% {
-    -webkit-transform: translateY(-1000px);
-    transform: translateY(-1000px);
-    opacity: 0;
-  }
-  100% {
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-@keyframes slide-in-top {
-  0% {
-    -webkit-transform: translateY(-1000px);
-    transform: translateY(-1000px);
-    opacity: 0;
-  }
-  100% {
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-@-webkit-keyframes slide-in-blurred-top {
-  0% {
-    -webkit-transform: translateY(-100px);
-    transform: translateY(-100px);
-    -webkit-transform-origin: 50% 0%;
-    transform-origin: 50% 0%;
-    -webkit-filter: blur(40px);
-    filter: blur(40px);
-    opacity: 0;
-  }
-  100% {
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-    transform: translateY(0);
-    -webkit-transform-origin: 50% 50%;
-    transform-origin: 50% 50%;
-    -webkit-filter: blur(0);
-    filter: blur(0);
-    opacity: 1;
-  }
-}
-@keyframes slide-in-blurred-top {
-  0% {
-    -webkit-transform: translateY(-100px);
-    transform: translateY(-100px);
-    -webkit-transform-origin: 50% 0%;
-    transform-origin: 50% 0%;
-    -webkit-filter: blur(40px);
-    filter: blur(40px);
-    opacity: 0;
-  }
-  100% {
-    -webkit-transform: translateY(0) scaleY(1) scaleX(1);
-    transform: translateY(0) scaleY(1) scaleX(1);
-    -webkit-transform-origin: 50% 50%;
-    transform-origin: 50% 50%;
-    -webkit-filter: blur(0);
-    filter: blur(0);
-    opacity: 1;
-  }
-}
+
 </style>
