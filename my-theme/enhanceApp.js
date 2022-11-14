@@ -8,10 +8,7 @@ export default ({
     isServer // 当前应用配置是处于 服务端渲染 或 客户端
 }) => {
     Vue.mixin(posts)
-    router = new VueRouter({
-        ...router.options,
-        base: process.env.NODE_ENV === 'development' ? '/' : '/my-theme/',
-    })
+    console.log(router.options);
     Vue.prototype.$eventBus = new Vue()
     const icons = require.context('./icons', false, /\.svg$/)
     const importAll = r => {
