@@ -1,8 +1,14 @@
 <template>
   <div id="home_list">
+    <div
+      class="backImg"
+      :style="{ opacity: currentMode == 'dark' ? '0.15' : '0.4' }"
+    >
+      <img :src="$withBase('./back.jpg')" alt="" />
+    </div>
     <div class="home_content">
-      <v-sidebar></v-sidebar>
-      <v-pageList></v-pageList>
+      <v-sidebar :setPageList="setPageList"></v-sidebar>
+      <v-pageList :pageList="pageList"></v-pageList>
     </div>
     <div id="home_back"></div>
   </div>
@@ -13,16 +19,24 @@ import vSidebar from "./Sidebar";
 import particlesJson from "./particles.json";
 export default {
   name: "",
+  props: ["currentMode"],
   components: {
     vPageList,
     vSidebar,
   },
   data() {
-    return {};
+    return {
+      pageList: [],
+    };
   },
   computed: {},
-  methods: {},
+  methods: {
+    setPageList(list) {
+      this.pageList = list;
+    },
+  },
   mounted() {
+    this.pageList = this.$timeSort;
     // import("particles.js")
     //   .then((module) => {
     //     console.log(particlesJson);
@@ -44,6 +58,17 @@ export default {
   font-size: 18px;
   position: relative;
   overflow: hidden;
+  background-size: 100% 100% !important;
+  background-repeat: no-repeat !important;
+  .backImg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: all 0.3s;
+    img {
+      height: 100%;
+    }
+  }
   #home_back {
     position: absolute;
     top: 0%;

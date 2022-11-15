@@ -14,6 +14,7 @@
 export default {
   name: "",
   components: {},
+  props: ["setModeState"],
   data() {
     return {
       modeOptions: {
@@ -30,11 +31,11 @@ export default {
     selectMode(mode) {
       this.currentMode = mode == "light" ? "dark" : "light";
       this.applyMode(this.currentMode);
-      this.$eventBus.$emit("selectMode", this.currentMode);
+      this.setModeState(this.currentMode);
     },
-    upEvent(){
-      document.getElementById("main_layout").scrollTop = 0
-    }
+    upEvent() {
+      document.getElementById("main_layout").scrollTop = 0;
+    },
   },
   created() {},
   mounted() {
@@ -43,14 +44,15 @@ export default {
         let mode = localStorage.getItem("mode");
         this.currentMode = mode ? mode : "dark";
         this.applyMode = module.default;
-        this.applyMode(mode);
+        this.applyMode(this.currentMode);
+        this.setModeState(this.currentMode);
       })
       .catch((err) => {
         console.log(err);
       });
     console.log(document.getElementById("main_layout"));
     document.getElementById("main_layout").onscroll = (e) => {
-      if (e.target.scrollTop >= 900) {
+      if (e.target.scrollTop >= 600) {
         this.upBtnShow = true;
       } else {
         this.upBtnShow = false;
@@ -91,7 +93,8 @@ export default {
 }
 .up-enter,
 .up-enter-to {
-  -webkit-animation: roll-in-right 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  -webkit-animation: roll-in-right 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+    both;
   animation: roll-in-right 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 .up-leave,

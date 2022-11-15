@@ -1,8 +1,15 @@
 <template>
   <div id="main_layout" class="main_layout_sup">
-    <v-banner></v-banner>
-    <home-list></home-list>
-    <themeMode></themeMode>
+    <v-banner
+      :currentMode="currentMode"
+      v-if="$page.frontmatter.isHome"
+    ></v-banner>
+    <home-list
+      :currentMode="currentMode"
+      v-if="$page.frontmatter.isHome"
+    ></home-list>
+    <Pages v-else></Pages>
+    <themeMode :setModeState="setModeState"></themeMode>
     <div class="bottom"></div>
   </div>
 </template>
@@ -10,20 +17,27 @@
 import vBanner from "@theme/components/banner";
 import homeList from "@theme/components/homeList";
 import themeMode from "@theme/components/themeMode";
+import Pages from "@theme/components/pages";
 export default {
   name: "",
   components: {
     vBanner,
     homeList,
     themeMode,
+    Pages,
   },
   data() {
     return {
       chilentPopUp: null,
+      currentMode: null,
     };
   },
   computed: {},
-  methods: {},
+  methods: {
+    setModeState(mode) {
+      this.currentMode = mode;
+    },
+  },
   created() {},
   mounted() {
     setTimeout(() => {
@@ -31,15 +45,14 @@ export default {
         .getElementById("main_layout")
         .classList.remove("main_layout_sup");
     }, 800);
-    console.log(this.$catalogueSort);
   },
 };
 </script>
 <style lang='scss' >
-@import url('../styles/animation.scss');
+@import url("../styles/animation.scss");
 #main_layout {
   height: 100vh;
-  overflow-y: scroll;
+  overflow-y: auto;
   // proximity:接近的时候滚动 mandatory:滚动结束后，滚动停止点一定会强制停在我们指定的地方
   scroll-snap-type: block mandatory;
   scroll-behavior: smooth;

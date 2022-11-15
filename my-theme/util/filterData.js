@@ -6,7 +6,7 @@ import { compareDate } from './toolFun'
 export const filterPosts = (posts) => {
     let newPosts = posts.filter(item => {
         const { frontmatter: { pageComponent, article, isHome } } = item
-        return !(pageComponent || article === false || isHome === true)
+        return !(pageComponent || article == false || isHome === true )
     });
     return newPosts
 }
@@ -34,14 +34,18 @@ export const timeSort = (posts) => {
  * @param {Array} posts 文章页数据
  */
 export const catalogueSort = (posts) => {
-    let catalogue = {}
+    let num = {}
     posts.forEach((item, index) => {
-        if (!catalogue[item.frontmatter.categories]) {
-            catalogue[item.frontmatter.categories] = 1
+        if (!num[item.frontmatter.categories]) {
+            num[item.frontmatter.categories] = [item]
 
         } else {
-            catalogue[item.frontmatter.categories]++
+            num[item.frontmatter.categories].push(item)
         }
     })
-    return catalogue
+    let catalogue = Object.keys(num)
+    return {
+        catalogue,
+        num
+    }
 }

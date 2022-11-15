@@ -66,6 +66,7 @@ import popUp from "./popUp";
 import parallax from "parallax-js";
 export default {
   name: "Layout",
+  props:['currentMode'],
   components: {
     navBar,
     popUp,
@@ -73,7 +74,6 @@ export default {
   data() {
     return {
       popUpShow: false,
-      currentMode: "dark",
     };
   },
   watch: {
@@ -93,11 +93,6 @@ export default {
     var parallaxInstance = new parallax(this.$refs.parallax, {
       relativeInput: false,
     });
-    this.currentMode = localStorage.getItem("mode")
-    this.$eventBus.$on("selectMode", (mode) => {
-      this.currentMode = mode;
-    });
-    console.log(document.getElementById("main_layout"));
   },
   methods: {
     clickList() {

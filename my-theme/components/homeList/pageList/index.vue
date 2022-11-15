@@ -1,7 +1,7 @@
 <template>
   <div id="pageList">
-    <div v-for="item in $timeSort" class="page_item" :key="item.key">
-      <div class="img_box">
+    <div v-for="(item, index) in pageList" class="page_item" :key="item.key">
+      <div class="img_box" v-if="index % 2 === 0">
         <img
           v-if="dynamicLazy"
           v-lazy="
@@ -19,8 +19,8 @@
         </div>
         <div class="page_time">
           <span v-if="item.frontmatter.sticky" class="sticky">
-            <svg-icon symbol="sticky"></svg-icon>置顶 | </span
-          >
+            <svg-icon symbol="sticky"></svg-icon>置顶 |
+          </span>
           <span v-if="item.frontmatter.time"
             >{{ dateFormat(item.frontmatter.time)
             }}{{ item.frontmatter.demo ? " | " : "" }}
@@ -29,27 +29,41 @@
         </div>
         <div class="page_subTile" v-html="item.excerpt"></div>
       </div>
-
-      <!-- {{ item.title }} -->
+      <div class="img_box" v-if="index % 2 !== 0">
+        <img
+          v-if="dynamicLazy"
+          v-lazy="
+            $withBase(
+              item.frontmatter.titleImg ? item.frontmatter.titleImg : '/404.jpg'
+            )
+          "
+          alt=""
+          :default-src="$withBase('/loading.gif')"
+        />
+      </div>
     </div>
   </div>
 </template>
 <script>
 export default {
   name: "",
+  props: ["pageList"],
   components: {},
   data() {
-    return {};
+    return {
+      // pageList:[]
+    };
   },
   computed: {},
   methods: {},
   created() {},
   mounted() {
-    console.log(this.$timeSort);
+    console.log(this.$frontmatter.pageComponent);
+    // this.pageList = this.$timeSort
   },
 };
 </script>
-<style lang='scss' >
+<style lang='scss'>
 #pageList {
   flex: 1;
   padding: 0 10px;
@@ -64,14 +78,15 @@ export default {
     transition: all 0.3s;
     overflow: hidden;
     display: flex;
+    cursor: pointer;
     &:hover {
       box-shadow: var(--box-shadow-hover);
       img {
-        transform: scale(1.1);
+        transform: scale(1.1) rotate(5deg);
       }
     }
     .img_box {
-      width: 350px;
+      width: 400px;
       height: 100%;
       overflow: hidden;
       img {
@@ -82,7 +97,7 @@ export default {
       }
     }
     .page_context {
-      padding: 20px 30px;
+      padding: 20px 55px;
       display: flex;
       flex-wrap: wrap;
       flex-direction: row;
@@ -92,9 +107,8 @@ export default {
         font-size: 28px;
         color: var(--text-color);
         width: 100%;
-        cursor: pointer;
-        transition: all .3s;
-        &:hover{
+        transition: all 0.3s;
+        &:hover {
           color: #49b1f5;
         }
       }
