@@ -28,7 +28,10 @@ module.exports = (options, ctx) => {
     },
 
     plugins: [
-      ['@vuepress/active-header-links', options.activeHeaderLinks],
+      ['@vuepress/active-header-links', {
+        sidebarLinkSelector: '.sidebar-link',
+        headerAnchorSelector: '.header-anchor'
+      }],
       '@vuepress/search',
       '@vuepress/plugin-nprogress',
       ['container', {

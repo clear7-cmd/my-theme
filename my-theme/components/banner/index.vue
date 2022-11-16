@@ -217,5 +217,4 @@ export default {
   transition: 0.3s ease-in-out;
   transition-delay: 0.1s;
 }
-
 </style>

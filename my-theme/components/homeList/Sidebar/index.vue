@@ -41,7 +41,22 @@
         </div>
       </div>
     </div>
-    <div class="newest div_box"></div>
+    <div class="right_menu div_box">
+      <div class="title">
+        <svg-icon symbol="catalogue"></svg-icon>
+        &nbsp;分类
+      </div>
+      <div :class="['menu_list']">
+        <div
+          :class="['menu_item', { active: hashText == item.slug }]"
+          v-for="(item, index) in headers"
+          :key="index"
+          :style="{ 'padding-left': `${item.level / 3}em` }"
+        >
+          <a :href="'#' + item.slug">{{ item.title }}</a>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -50,13 +65,48 @@ export default {
   components: {},
   props: ["setPageList"],
   data() {
-    return {};
+    return {
+      headers: [],
+      hashText: "",
+      scrollTop: 0,
+      menuTop: 0,
+    };
+  },
+  watch: {
+    scrollTop(value) {
+      let list = this.headers.filter((item) => {
+        return value >= item.top;
+      });
+      this.hashText =
+        list.length == 0 ? this.hashText : list[list.length - 1].slug;
+    },
   },
   computed: {},
-  methods: {},
+  methods: {
+    getElementTop() {
+      if (this.$page.headers) {
+        this.headers = this.$page.headers.map((item) => {
+          let top =
+            document.getElementById(item.slug).getBoundingClientRect().top - 10;
+          return {
+            ...item,
+            top,
+          };
+        });
+        this.hashText = this.headers[0]?.slug;
+      }
+    },
+  },
   created() {},
   mounted() {
-    console.log(this.$site.themeConfig.user);
+    this.getElementTop();
+    this.menuTop = document
+      .querySelector(".right_menu")
+      .getBoundingClientRect().top;
+    console.log(document.querySelector(".right_menu").getBoundingClientRect());
+    document.getElementById("main_layout").addEventListener("scroll", (e) => {
+      this.scrollTop = e.target.scrollTop;
+    });
   },
 };
 </script>
@@ -145,8 +195,37 @@ export default {
       }
     }
   }
-  .newest {
+  .right_menu {
     min-height: 300px;
+    font-size: 16px;
+    position: sticky;
+    top: 10px;
+    .menu_list {
+      margin-top: 10px;
+      font-size: 14px;
+      .menu_item {
+        margin: 10px 0;
+      }
+      .active {
+        position: relative;
+        &::after {
+          content: "";
+          height: 80%;
+          width: 5px;
+          border-radius: 0 4px 4px 0;
+          background: #1e80ff;
+          position: absolute;
+          left: -15px;
+          top: 10%;
+        }
+        a {
+          color: #1e80ff;
+        }
+      }
+      a {
+        color: var(--text-color-sub);
+      }
+    }
   }
 }
 </style>

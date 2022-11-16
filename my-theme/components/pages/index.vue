@@ -13,8 +13,18 @@ export default {
   computed: {},
   methods: {},
   created() {},
-  mounted() {},
+  mounted() {
+  },
 };
 </script>
 <style lang='scss' scoped>
+#pagesDetails {
+  flex: 1;
+  padding: 20px;
+  margin: 10px 20px;
+  color: var(--text-color);
+  background: var(--box-color);
+  border-radius: 15px;
+  box-shadow: var(--box-shadow);
+}
 </style>

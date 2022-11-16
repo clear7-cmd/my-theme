@@ -1,46 +1,50 @@
 <template>
   <div id="pageList">
     <div v-for="(item, index) in pageList" class="page_item" :key="item.key">
-      <div class="img_box" v-if="index % 2 === 0">
-        <img
-          v-if="dynamicLazy"
-          v-lazy="
-            $withBase(
-              item.frontmatter.titleImg ? item.frontmatter.titleImg : '/404.jpg'
-            )
-          "
-          alt=""
-          :default-src="$withBase('/loading.gif')"
-        />
-      </div>
-      <div class="page_context">
-        <div class="page_title">
-          {{ item.title }}
+        <div class="img_box" v-if="index % 2 === 0">
+          <img
+            v-if="dynamicLazy"
+            v-lazy="
+              $withBase(
+                item.frontmatter.titleImg
+                  ? item.frontmatter.titleImg
+                  : '/404.jpg'
+              )
+            "
+            alt=""
+            :default-src="$withBase('/loading.gif')"
+          />
         </div>
-        <div class="page_time">
-          <span v-if="item.frontmatter.sticky" class="sticky">
-            <svg-icon symbol="sticky"></svg-icon>置顶 |
-          </span>
-          <span v-if="item.frontmatter.time"
-            >{{ dateFormat(item.frontmatter.time)
-            }}{{ item.frontmatter.demo ? " | " : "" }}
-          </span>
-          <span v-if="item.frontmatter.demo">demo </span>
+        <div class="page_context">
+          <div class="page_title">
+            {{ item.title }}
+          </div>
+          <div class="page_time">
+            <span v-if="item.frontmatter.sticky" class="sticky">
+              <svg-icon symbol="sticky"></svg-icon>置顶 |
+            </span>
+            <span v-if="item.frontmatter.time"
+              >{{ dateFormat(item.frontmatter.time)
+              }}{{ item.frontmatter.demo ? " | " : "" }}
+            </span>
+            <span v-if="item.frontmatter.demo">demo </span>
+          </div>
+          <div class="page_subTile" v-html="item.excerpt"></div>
         </div>
-        <div class="page_subTile" v-html="item.excerpt"></div>
-      </div>
-      <div class="img_box" v-if="index % 2 !== 0">
-        <img
-          v-if="dynamicLazy"
-          v-lazy="
-            $withBase(
-              item.frontmatter.titleImg ? item.frontmatter.titleImg : '/404.jpg'
-            )
-          "
-          alt=""
-          :default-src="$withBase('/loading.gif')"
-        />
-      </div>
+        <div class="img_box" v-if="index % 2 !== 0">
+          <img
+            v-if="dynamicLazy"
+            v-lazy="
+              $withBase(
+                item.frontmatter.titleImg
+                  ? item.frontmatter.titleImg
+                  : '/404.jpg'
+              )
+            "
+            alt=""
+            :default-src="$withBase('/loading.gif')"
+          />
+        </div>
     </div>
   </div>
 </template>
@@ -58,7 +62,6 @@ export default {
   methods: {},
   created() {},
   mounted() {
-    console.log(this.$frontmatter.pageComponent);
     // this.pageList = this.$timeSort
   },
 };

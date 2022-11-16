@@ -8,7 +8,8 @@
     </div>
     <div class="home_content">
       <v-sidebar :setPageList="setPageList"></v-sidebar>
-      <v-pageList :pageList="pageList"></v-pageList>
+      <Pages v-if="!$page.frontmatter.isHome"></Pages>
+      <v-pageList :pageList="pageList" v-else></v-pageList>
     </div>
     <div id="home_back"></div>
   </div>
@@ -16,6 +17,7 @@
 <script>
 import vPageList from "./pageList";
 import vSidebar from "./Sidebar";
+import Pages from "@theme/components/pages";
 import particlesJson from "./particles.json";
 export default {
   name: "",
@@ -23,6 +25,7 @@ export default {
   components: {
     vPageList,
     vSidebar,
+    Pages,
   },
   data() {
     return {
@@ -37,6 +40,7 @@ export default {
   },
   mounted() {
     this.pageList = this.$timeSort;
+    console.log(this.pageList);
     // import("particles.js")
     //   .then((module) => {
     //     console.log(particlesJson);
@@ -57,7 +61,7 @@ export default {
   scroll-snap-align: start;
   font-size: 18px;
   position: relative;
-  overflow: hidden;
+  // overflow: hidden;
   background-size: 100% 100% !important;
   background-repeat: no-repeat !important;
   .backImg {
@@ -65,7 +69,10 @@ export default {
     width: 100%;
     height: 100%;
     transition: all 0.3s;
+    overflow: hidden;
     img {
+      width: 100%;
+      object-fit: cover;
       height: 100%;
     }
   }
@@ -84,7 +91,6 @@ export default {
     margin: 0 auto;
     margin-top: 30px;
     // background: #ccc;
-    overflow: hidden;
   }
 }
 </style>
