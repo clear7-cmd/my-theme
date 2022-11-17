@@ -32,8 +32,8 @@
     </div>
     <div id="videoPlay" v-show="currentMode == 'light'">
       <video
-        :src="$withBase('./ocean/ocean.mp4')"
-        :poster="$withBase('./ocean/ocean.png')"
+        :src="$withBase('/ocean/ocean.mp4')"
+        :poster="$withBase('/ocean/ocean.png')"
         autoplay
         loop
         muted
@@ -43,8 +43,8 @@
         <div class="title">vuepress</div>
         <ClientOnly v-if="dynamicComponent">
           <vue-typed-js
-            :strings="['awesome', 'brilliant']"
-            :typeSpeed="200"
+            :strings="$site.themeConfig.strings"
+            :typeSpeed="100"
             :backSpeed="50"
             :backDelay="1000"
             :loop="true"
@@ -90,6 +90,7 @@ export default {
     },
   },
   mounted() {
+    console.log(this.$site.themeConfig);
     var parallaxInstance = new parallax(this.$refs.parallax, {
       relativeInput: false,
     });

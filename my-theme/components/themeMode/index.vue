@@ -50,7 +50,6 @@ export default {
       .catch((err) => {
         console.log(err);
       });
-    console.log(document.getElementById("main_layout"));
     document.getElementById("main_layout").onscroll = (e) => {
       if (e.target.scrollTop >= 600) {
         this.upBtnShow = true;

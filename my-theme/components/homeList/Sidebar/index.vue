@@ -44,7 +44,7 @@
     <div class="right_menu div_box">
       <div class="title">
         <svg-icon symbol="catalogue"></svg-icon>
-        &nbsp;分类
+        &nbsp;目录
       </div>
       <div :class="['menu_list']">
         <div
@@ -80,6 +80,9 @@ export default {
       this.hashText =
         list.length == 0 ? this.hashText : list[list.length - 1].slug;
     },
+    $route() {
+      this.getElementTop();
+    },
   },
   computed: {},
   methods: {
@@ -94,19 +97,30 @@ export default {
           };
         });
         this.hashText = this.headers[0]?.slug;
+      } else {
+        this.headers = [];
+        this.hashText = "";
       }
+    },
+    scrolEvent(e) {
+      this.scrollTop = e.target.scrollTop;
     },
   },
   created() {},
   mounted() {
     this.getElementTop();
+    // this.hashText = this.headers[0]?.slug;
     this.menuTop = document
       .querySelector(".right_menu")
       .getBoundingClientRect().top;
-    console.log(document.querySelector(".right_menu").getBoundingClientRect());
-    document.getElementById("main_layout").addEventListener("scroll", (e) => {
-      this.scrollTop = e.target.scrollTop;
-    });
+    document
+      .getElementById("main_layout")
+      .addEventListener("scroll", this.scrolEvent);
+  },
+  beforeDestroy() {
+    document
+      .getElementById("main_layout")
+      .removeEventListener("scroll", this.scrollTop);
   },
 };
 </script>

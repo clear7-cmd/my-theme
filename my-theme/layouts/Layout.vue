@@ -50,6 +50,12 @@ export default {
 };
 </script>
 <style lang='scss' >
+body {
+  background: var(--background-color);
+}
+#app{
+  background: var(--background-color);
+}
 @import url("../styles/animation.scss");
 #main_layout {
   height: 100vh;

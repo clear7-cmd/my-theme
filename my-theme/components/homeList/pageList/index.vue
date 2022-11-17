@@ -1,6 +1,11 @@
 <template>
   <div id="pageList">
-    <div v-for="(item, index) in pageList" class="page_item" :key="item.key">
+    <router-link
+      :to="item.path"
+      v-for="(item, index) in pageList"
+      :key="item.key"
+    >
+      <div class="page_item">
         <div class="img_box" v-if="index % 2 === 0">
           <img
             v-if="dynamicLazy"
@@ -45,7 +50,8 @@
             :default-src="$withBase('/loading.gif')"
           />
         </div>
-    </div>
+      </div>
+    </router-link>
   </div>
 </template>
 <script>

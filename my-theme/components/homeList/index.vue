@@ -4,7 +4,7 @@
       class="backImg"
       :style="{ opacity: currentMode == 'dark' ? '0.15' : '0.4' }"
     >
-      <img :src="$withBase('./back.jpg')" alt="" />
+      <img :src="$withBase('/back.jpg')" alt="" />
     </div>
     <div class="home_content">
       <v-sidebar :setPageList="setPageList"></v-sidebar>
@@ -36,11 +36,15 @@ export default {
   methods: {
     setPageList(list) {
       this.pageList = list;
+      if (this.$page.frontmatter.isHome) return;
+      this.$router.push("/");
+      setTimeout(() => {
+        document.getElementById("home_list").scrollIntoView();
+      }, 100);
     },
   },
   mounted() {
     this.pageList = this.$timeSort;
-    console.log(this.pageList);
     // import("particles.js")
     //   .then((module) => {
     //     console.log(particlesJson);
@@ -61,6 +65,7 @@ export default {
   scroll-snap-align: start;
   font-size: 18px;
   position: relative;
+  display: table;
   // overflow: hidden;
   background-size: 100% 100% !important;
   background-repeat: no-repeat !important;
@@ -90,7 +95,6 @@ export default {
     min-height: 100vh;
     margin: 0 auto;
     margin-top: 30px;
-    // background: #ccc;
   }
 }
 </style>
