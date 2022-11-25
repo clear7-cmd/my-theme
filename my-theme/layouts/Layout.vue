@@ -70,6 +70,7 @@ body {
 .main_layout_sup {
   overflow: hidden;
   overflow-y: hidden !important;
+  
 }
 svg {
   fill: currentColor;

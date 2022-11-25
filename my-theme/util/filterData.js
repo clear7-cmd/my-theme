@@ -19,13 +19,13 @@ export const timeSort = (posts) => {
         const prevSticky = prev.frontmatter.sticky
         const nextSticky = next.frontmatter.sticky
         if (prevSticky && nextSticky) {
-            return prevSticky == nextSticky ? compareDate(prev, next) : (prevSticky - nextSticky)
+            return  compareDate(next,prev)
         } else if (prevSticky && !nextSticky) {
             return -1
         } else if (!prevSticky && nextSticky) {
             return 1
         }
-        return compareDate(prev, next)
+        return compareDate(next, prev)
     })
     return posts
 }

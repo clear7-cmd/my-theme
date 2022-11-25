@@ -8,7 +8,7 @@ categories: git
 ---
 
 记录 git 的使用命令，方便后续开发
-
+<!-- more -->
 # 这是一级标题
 
 ```
@@ -78,4 +78,3 @@ categories: git
 12312312
 ```
 
-<!-- more -->
