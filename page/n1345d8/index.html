@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>h5实现一个拖动组件 | Hello VuePress</title>
+    <meta name="generator" content="VuePress 1.9.7">
+    
+    <meta name="description" content="Just playing around">
+    
+    <link rel="preload" href="/my-theme/assets/css/0.styles.bb191f15.css" as="style"><link rel="preload" href="/my-theme/assets/js/app.4e21f729.js" as="script"><link rel="preload" href="/my-theme/assets/js/2.658cde1f.js" as="script"><link rel="preload" href="/my-theme/assets/js/14.6469e10a.js" as="script"><link rel="prefetch" href="/my-theme/assets/js/10.2a9d4467.js"><link rel="prefetch" href="/my-theme/assets/js/11.a0835185.js"><link rel="prefetch" href="/my-theme/assets/js/12.5184a4c6.js"><link rel="prefetch" href="/my-theme/assets/js/13.fced847c.js"><link rel="prefetch" href="/my-theme/assets/js/15.83a38898.js"><link rel="prefetch" href="/my-theme/assets/js/16.7c47e570.js"><link rel="prefetch" href="/my-theme/assets/js/17.958d01aa.js"><link rel="prefetch" href="/my-theme/assets/js/18.e3116616.js"><link rel="prefetch" href="/my-theme/assets/js/19.f1ade07b.js"><link rel="prefetch" href="/my-theme/assets/js/3.aa4f49cb.js"><link rel="prefetch" href="/my-theme/assets/js/4.097f2cdc.js"><link rel="prefetch" href="/my-theme/assets/js/5.d3b26047.js"><link rel="prefetch" href="/my-theme/assets/js/6.e3d659c3.js"><link rel="prefetch" href="/my-theme/assets/js/7.7797a400.js"><link rel="prefetch" href="/my-theme/assets/js/8.d73a2104.js"><link rel="prefetch" href="/my-theme/assets/js/9.865e7a89.js">
+    <link rel="stylesheet" href="/my-theme/assets/css/0.styles.bb191f15.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div id="main_layout" class="main_layout_sup" style="scroll-snap-type:none;"><!----> <div id="home_list"><div class="backImg" style="opacity:0.4;"><img src="/my-theme/back.jpg" alt></div> <div class="home_content"><div id="sidebar" data-v-0dcd373b><div class="userInfo div_box" data-v-0dcd373b><div class="portrait" data-v-0dcd373b><img src="/my-theme/portrait.png" alt data-v-0dcd373b></div> <div class="nickname" data-v-0dcd373b>
+      。
+    </div> <div class="brief" data-v-0dcd373b>
+      一个vuepress的主题
+    </div> <div class="card_info" data-v-0dcd373b><div data-v-0dcd373b>
+        文章 <span data-v-0dcd373b>6</span></div> <div data-v-0dcd373b>
+        分类 <span data-v-0dcd373b>4</span></div></div> <a href="https://github.com/clear7-cmd/my-theme" data-v-0dcd373b><div class="github_href" data-v-0dcd373b><svg aria-hidden="true" class="svg-icon svg-icon-" style="width:1em;height:1em;vertical-align:-0.15em;fill:currentColor;overflow:hidden;" data-v-0dcd373b data-v-0dcd373b><use xlink:href="#icon-github" data-v-0dcd373b data-v-0dcd373b></use></svg>
+        主题GitHub
+      </div></a></div> <div class="catalogue div_box" data-v-0dcd373b><div class="title" data-v-0dcd373b><svg aria-hidden="true" class="svg-icon svg-icon-" style="width:1em;height:1em;vertical-align:-0.15em;fill:currentColor;overflow:hidden;" data-v-0dcd373b data-v-0dcd373b><use xlink:href="#icon-catalogue" data-v-0dcd373b data-v-0dcd373b></use></svg>
+       分类
+    </div> <div class="content_list" data-v-0dcd373b><div class="content_item" data-v-0dcd373b>
+        vue <span data-v-0dcd373b>1</span></div><div class="content_item" data-v-0dcd373b>
+        web <span data-v-0dcd373b>2</span></div><div class="content_item" data-v-0dcd373b>
+        css <span data-v-0dcd373b>1</span></div><div class="content_item" data-v-0dcd373b>
+        git <span data-v-0dcd373b>2</span></div></div></div> <div class="right_menu div_box" data-v-0dcd373b><div class="title" data-v-0dcd373b><svg aria-hidden="true" class="svg-icon svg-icon-" style="width:1em;height:1em;vertical-align:-0.15em;fill:currentColor;overflow:hidden;" data-v-0dcd373b data-v-0dcd373b><use xlink:href="#icon-catalogue" data-v-0dcd373b data-v-0dcd373b></use></svg>
+       目录
+    </div> <div class="menu_list" data-v-0dcd373b></div></div></div> <div id="pagesDetails" data-v-f3a1b5b4><div class="info" data-v-f3a1b5b4><div class="time" data-v-f3a1b5b4><svg aria-hidden="true" class="svg-icon svg-icon-" style="width:1em;height:1em;vertical-align:-0.15em;fill:currentColor;overflow:hidden;" data-v-f3a1b5b4 data-v-f3a1b5b4><use xlink:href="#icon-time" data-v-f3a1b5b4 data-v-f3a1b5b4></use></svg>
+      2022-11-25
+    </div> <div class="category" data-v-f3a1b5b4><svg aria-hidden="true" class="svg-icon svg-icon-" style="width:1em;height:1em;vertical-align:-0.15em;fill:currentColor;overflow:hidden;" data-v-f3a1b5b4 data-v-f3a1b5b4><use xlink:href="#icon-catalogue" data-v-f3a1b5b4 data-v-f3a1b5b4></use></svg>
+      vue
+    </div></div> <div class="details_title" data-v-f3a1b5b4>
+    h5实现一个拖动组件
+  </div> <div class="content__default" data-v-f3a1b5b4><p>在 vue 中实现一个拖动组件</p> <h2 id="拖动事件"><a href="#拖动事件" class="header-anchor">#</a> 拖动事件</h2> <table style="text-align:center;"><tr style="background:var(--box-color);"><th width="150px">针对对象</th> <th width="150px">事件名称</th> <th width="300px">说明</th></tr> <tr style="background:var(--box-color);"><td rowspan="3">被拖动的元素</td> <td>dragstart</td> <td>在元素开始被拖动时候触发</td></tr> <tr style="background:var(--box-color);"><td>drag</td> <td>在元素被拖动时反复触发</td></tr> <tr style="background:var(--box-color);"><td>dragend</td> <td>在拖动操作完成时触发</td></tr> <tr style="background:var(--box-color);"><td rowspan="3">目的地对象</td> <td>dragenter</td> <td>当被拖动元素进入目的地元素所占据的屏幕空间时触发</td></tr> <tr style="background:var(--box-color);"><td>dragover</td> <td>当被拖动元素在目的地元素内时触发</td></tr> <tr style="background:var(--box-color);"><td>dragleave</td> <td>当被拖动元素没有放下就离开目的地元素时触发</td></tr></table> <h2 id="实现方式"><a href="#实现方式" class="header-anchor">#</a> 实现方式</h2> <p><strong>可以采用事件代理的方式进行准确查找到指定元素,通过父元素捕获到指定拖拽元素,再进行后续操作</strong></p> <div class="language- line-numbers-mode"><pre class="language-text"><code>    &lt;div
+      class=&quot;list&quot;
+      ref=&quot;list&quot;
+      @dragstart=&quot;dragstart&quot;
+      @dragenter=&quot;dragenter&quot;
+      @dragend=&quot;dragend&quot;
+    &gt;
+      &lt;div draggable=&quot;true&quot; class=&quot;item&quot;&gt;1&lt;/div&gt;
+      &lt;div draggable=&quot;true&quot; class=&quot;item&quot;&gt;2&lt;/div&gt;
+      &lt;div draggable=&quot;true&quot; class=&quot;item&quot;&gt;3&lt;/div&gt;
+      &lt;div draggable=&quot;true&quot; class=&quot;item&quot;&gt;4&lt;/div&gt;
+      &lt;div draggable=&quot;true&quot; class=&quot;item&quot;&gt;5&lt;/div&gt;
+      &lt;div draggable=&quot;true&quot; class=&quot;item&quot;&gt;6&lt;/div&gt;
+      &lt;div draggable=&quot;true&quot; class=&quot;item&quot;&gt;7&lt;/div&gt;
+      &lt;div draggable=&quot;true&quot; class=&quot;item&quot;&gt;8&lt;/div&gt;
+    &lt;/div&gt;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br></div></div><p><strong>通过 dragstart 捕获到的元素触发 dragstart 事件,储存一下当前事件节点,并给当前节点添加样式属性,因为拖拽的样式是按照你当前节点样式展示的,所以属性要设置延迟加载</strong></p> <div class="language-JavaScript line-numbers-mode"><pre class="language-javascript"><code><span class="token function">dragstart</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+     <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        e<span class="token punctuation">.</span>target<span class="token punctuation">.</span>classList<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">&quot;moving&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token keyword">this</span><span class="token punctuation">.</span>currentNode <span class="token operator">=</span> e<span class="token punctuation">.</span>target<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><div class="language-css line-numbers-mode"><pre class="language-css"><code><span class="token selector">.moving</span> <span class="token punctuation">{</span>
+  <span class="token property">background</span><span class="token punctuation">:</span> transparent<span class="token punctuation">;</span>
+  <span class="token property">border-color</span><span class="token punctuation">:</span> #333<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><p><strong>根据 dragenter 事件判断拖拽节点移动到哪个节点上方,再通过拖拽节点和目标节点的当前下标比对判断是向上或者向下进行移动了</strong></p> <div class="language-JavaScript line-numbers-mode"><pre class="language-javascript"><code><span class="token function">dragenter</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>e<span class="token punctuation">.</span>target <span class="token operator">!==</span> <span class="token keyword">this</span><span class="token punctuation">.</span>currentNode<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">let</span> children <span class="token operator">=</span> Array<span class="token punctuation">.</span><span class="token function">from</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>$refs<span class="token punctuation">.</span>list<span class="token punctuation">.</span>children<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">let</span> targetIndex <span class="token operator">=</span> children<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>target<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">let</span> index <span class="token operator">=</span> children<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>currentNode<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>index <span class="token operator">&gt;</span> targetIndex<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">this</span><span class="token punctuation">.</span>$refs<span class="token punctuation">.</span>list<span class="token punctuation">.</span><span class="token function">insertBefore</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>currentNode<span class="token punctuation">,</span> e<span class="token punctuation">.</span>target<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+          <span class="token keyword">this</span><span class="token punctuation">.</span>$refs<span class="token punctuation">.</span>list<span class="token punctuation">.</span><span class="token function">insertBefore</span><span class="token punctuation">(</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>currentNode<span class="token punctuation">,</span>
+            e<span class="token punctuation">.</span>target<span class="token punctuation">.</span>nextElementSibling
+          <span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>index<span class="token punctuation">,</span> targetIndex<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br></div></div><p><strong>最后通过移除赋值的属性</strong></p> <div class="language-JavaScript line-numbers-mode"><pre class="language-javascript"><code><span class="token function">dragend</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>e<span class="token punctuation">.</span>target <span class="token operator">==</span> <span class="token keyword">this</span><span class="token punctuation">.</span>currentNode<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        e<span class="token punctuation">.</span>target<span class="token punctuation">.</span>classList<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span><span class="token string">&quot;moving&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div></div></div></div> <div id="home_back"></div></div> <div class="side_btn"><div id="themeMode"><svg aria-hidden="true" class="svg-icon svg-icon-" style="width:1em;height:1em;vertical-align:-0.15em;fill:currentColor;overflow:hidden;"><use xlink:href="#icon-yueliang"></use></svg></div> <div class="go_top" style="display:none;"><svg aria-hidden="true" class="svg-icon svg-icon-" style="width:1em;height:1em;vertical-align:-0.15em;fill:currentColor;overflow:hidden;"><use xlink:href="#icon-up"></use></svg></div></div></div><div class="global-ui"></div></div>
+    <script src="/my-theme/assets/js/app.4e21f729.js" defer></script><script src="/my-theme/assets/js/2.658cde1f.js" defer></script><script src="/my-theme/assets/js/14.6469e10a.js" defer></script>
+  </body>
+</html>
